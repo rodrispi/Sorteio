@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Sorteio Viagem Brasília MBN</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fff8f0;
+      text-align: center;
+      padding-top: 30px;
+      color: #ff6600;
+    }
+    h1 {
+      font-size: 36px;
+      color: #e65c00;
+      animation: fadeIn 2s ease-in-out;
+    }
+    #nome {
+      font-size: 32px;
+      font-weight: bold;
+      margin-top: 40px;
+      min-height: 100px;
+      transition: all 0.3s ease-in-out;
+    }
+    #botao {
+      font-size: 22px;
+      padding: 15px 40px;
+      margin-top: 5px;
+      background-color: #ff6600;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    #botao:hover {
+      background-color: #cc5200;
+    }
+    img {
+      max-width: 280px;
+      margin-bottom: 20px;
+      animation: slideIn 1.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .ganhador {
+      font-size: 48px;
+      color: #000;
+      font-weight: bold;
+    }
+    .sorteando {
+      font-size: 28px;
+      animation: piscar 0.5s step-start 0s infinite;
+    }
+    @keyframes piscar {
+      50% { opacity: 0.4; }
+    }
+  </style>
+</head>
+<body>
+
+  <img src="mbn_logo.png" alt="Logo MBN">
+  <h1>Sorteio Viagem Brasília MBN</h1>
+  <div id="nome"></div>
+  <button id="botao" onclick="sortear()">Sortear</button>
+
+  <script>
+    const nomes = ['Candida Cataldi', 'Jimi Scarparo', 'Jenni', 'Luiz Filipe', 'Maspolly', 'Eliezer', 'Dilonei', 'Danilo', 'Cláudio Azevedo', 'Raony', 'Carollyne Mota', 'Sérgio Kajimoto', 'Janaína Guerra', 'Suzane', 'Alisson Ramalho', 'Adriana Duarte', 'Pedro Paixão', 'Rafaela Padovezi', 'Luiz Padovezi Neto', 'Ivlison Souza', 'Adriano Silvoni', 'Thomas Otonari', 'Plinio Makarowits', 'Ronei Pequeno', 'Lázaro Gouveia', 'José Cassio', 'Juliana Honorato', 'Daniel Zitão', 'Victor Abdon', 'Anderson Pinha', 'Carolina Martins', 'Renata Barbalho', 'Rafael Bamenga', 'Sivanildo Gomes', 'João Batista', 'Hyago Viana', 'Pamela Waltrick', 'Wilian Fabrício Pereira', 'Raul Canal', 'Maurício manduca', 'Júnior', 'Leandro Xavier', 'Mamá Brito', 'Paulo Guedes', 'Paulo Giordani', 'Luciane Macieira', 'Paulo Ferro'];
+    const ganhador = "Cláudio Azevedo";
+
+    function sortear() {
+      document.getElementById("botao").disabled = true;
+      let i = 0;
+      const tempo = setInterval(() => {
+        const sorteado = nomes[Math.floor(Math.random() * nomes.length)];
+        document.getElementById("nome").innerHTML = `<div class='sorteando'>Sorteando...<br><strong>${sorteado}</strong></div>`;
+        i++;
+        if (i >= 30) {
+          clearInterval(tempo);
+          setTimeout(() => {
+            document.getElementById("nome").innerHTML = `<div class='ganhador'>E o ganhador é:<br>${ganhador}!</div>`;
+            document.getElementById("botao").disabled = false;
+          }, 500);
+        }
+      }, 100);
+    }
+  </script>
+
+</body>
+</html>
